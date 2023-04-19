@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#!/bin/python3
 
-"""database storage engine"""
+"""script that defines storage engine"""
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -44,6 +44,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
+        """query on the current db session all cls objects"""
         dct = {}
         if cls is None:
             for c in classes.values():
@@ -70,12 +71,12 @@ class DBStorage:
                 raise ex
 
     def save(self):
-      	"""commit changes of the current db session"""
+        """commit all changes of the current db session"""
         self.__session.commit()
 
     def delete(self, obj=None):
-        """ deletes the current databse session ot the obj
-            if it's not None
+        """ deletes from the current databse session the obj
+            is it's not None
         """
         if obj is not None:
             self.__session.query(type(obj)).filter(
@@ -89,5 +90,5 @@ class DBStorage:
         self.__session = scoped_session(session_factory)()
 
     def close(self):
-        """closes working SQLAlchemy session"""
+        """closes the working SQLAlchemy session"""
         self.__session.close()
