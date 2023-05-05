@@ -44,11 +44,12 @@ class BaseModel:
 		    setattr(self, 'created_at', datetime.now())
 
 		if not hasattr(kwargs, 'updated_at'):
-		    setattr(self,, 'updated_at', datetime.now())
+		    setattr(self, , 'updated_at', datetime.now())
 
     def __str__(self):
         """Returns a string representation of the instance"""
-        return '[{}] ({}) {}'.format(self._class__.__name__, self.id, self.__dict__)
+        return '[{}] ({}) {}'.format(
+    self._class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
@@ -66,7 +67,7 @@ class BaseModel:
 		dictionarary[k].isoformat()
 
 	if '_sa_instance_state' in dictionary.keys():
-	    del(dictionary['_sa_instance_state'])
+	    del (dictionary['_sa_instance_state'])
         return dictionary
 
     def delete(self):

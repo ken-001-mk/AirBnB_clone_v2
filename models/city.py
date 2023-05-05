@@ -11,13 +11,11 @@ class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     __tablename__ = 'cities'
     if storage_type == 'db':
-	name = 	Column(string(128), nullable=False)
-	state_id = (string(60), Foreignkey('state.id'), nullable=False)
-	places = relationship('place', backref='cities', 
-			     cascade='all, delete, delete-orphan')
+        name = Column(string(128), nullable=False)
+        state_id = (string(60), Foreignkey('state.id'), nullable=False)
+        places = relationship('place', backref='cities',
+                              cascade='all, delete, delete-orphan')
 
-
-	
     else:
-	name = ''
-	state_id = ''
+        name = ''
+        state_id = ''

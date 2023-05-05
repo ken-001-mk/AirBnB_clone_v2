@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 from models import storage_type
 
+
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
     """This class defines a user by various attributes"""
@@ -19,9 +20,8 @@ class User(BaseModel, Base):
         reviews = relationship('Review', backref='user',
                                cascade='all, delete, delete-orphan')
 
-
     else:
-	email = ''
-	password = ''
-	first_name = ''
-	last_name = ''
+        email = ''
+        password = ''
+        first_name = ''
+        last_name = ''
